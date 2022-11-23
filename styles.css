@@ -1,0 +1,64 @@
+.intro{
+	
+	font-size: 2em;
+		margin: 1em;
+
+}
+
+.mt-5{
+	
+	font-size: 3.5em;
+	margin: 1em;
+}
+
+.card{
+	margin-top: 1em ;
+	margin-bottom: 1em ;
+
+}
+.badge{
+	font-size: 1.2em;
+}
+footer{
+	
+	border-top: 1px solid lightgray;
+	margin-top: 2em;
+	background-color: lightgray;
+}
+ div.col-md-12.py-5{
+	padding:1em  !important;
+	 margin-top:1em;
+}
+.logoImg{
+    max-height: 20vh;
+}
+
+.contactText{
+    text-align: center;
+    font-size: 1.5em;
+}
+element {
+
+}
+.navbar-dark .navbar-brand {
+
+    color: #fff;
+
+}
+.text-dark {
+
+    color: #343a40 !important;
+
+}
+.font-weight-bold {
+
+    font-weight: 700 !important;
+
+}
+.navbar, .navbar-brand {
+    font-size: 1.5rem;
+}
+.aboutDesc{
+    
+    font-size: 1.3rem;
+}
