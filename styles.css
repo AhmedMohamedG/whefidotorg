@@ -37,8 +37,14 @@ footer{
     text-align: center;
     font-size: 1.5em;
 }
-element {
-
+nav,
+footer{
+	background-image:linear-gradient(#2e8b57,#59a67e)
+}
+footer a{
+	color: white;
+	padding: 0.5rem;
+	margin:0.5rem;
 }
 .navbar-dark .navbar-brand {
 
