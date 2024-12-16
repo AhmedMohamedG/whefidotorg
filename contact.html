@@ -281,9 +281,9 @@ clearForm = (array) =>{
 submitHandling = (e) => {
       e.preventDefault();
       //Declaring variables
-      let emailContent =  document.getElementById('contactTextArea').value;
-      const request = 'https://eu-gb.functions.appdomain.cloud/api/v1/web/ahmed.mohamed.gaber%40gmail.com_dev/default/sendRmail2';
-      const userName =  document.getElementById('userName').value;
+      const emailContent =  document.getElementById('contactTextArea').value;
+	  const request = 'https://sv04rs5whg.execute-api.us-east-1.amazonaws.com/postmessage';
+	  const userName =  document.getElementById('userName').value;
       const userEmail =  document.getElementById('userEmail').value;
       const formMsg =  document.getElementById('formMsg');
       //Check if the user's email is a valid email
@@ -291,24 +291,34 @@ submitHandling = (e) => {
       if(!flag){
         return formMsg.innerText = 'Please enter a vaild email'
       }
-      const data = { emailText : `New response from whefi.org
-        Name: ${userName}
-        Email: ${userEmail}
-        Feedback: 
-        ${emailContent}`};
-
-       	fetch(request,{
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                },
-                body:JSON.stringify(data),
+	  //Create message text to be send by email
+    const data = { 	emailText : `New response from whefi.org
+					Name: ${userName}
+					Email: ${userEmail}
+					Feedback: 
+					${emailContent}`};
+		
+    fetch(request,{
+            method: 'POST',
+            headers: {
+            'Content-Type': 'text/plain',
+            },
+            body:JSON.stringify(data),
             })
-        .then(response => {
+        .then( async (response) => {
+			//Server or network errors handling
             if (!response.ok) {
               throw new Error('HTTP error, status = ' + response.status);
             }
-            console.log('res',response);
+			
+			///Handling response status - Start
+			const status =  await readStreamRes(response.body)			
+			if(status !== 'Successful'){ //Successful - Failed - false - undefined
+
+				 throw new Error(`Error: Process status is "${status}"`);
+			}
+			///Handling response status - End
+			
             clearForm(['contactTextArea', 'userName','userEmail']);
             formMsg.innerText = 'Message sent successfully!';
       	})
