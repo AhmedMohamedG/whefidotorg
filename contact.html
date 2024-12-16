@@ -257,8 +257,7 @@ form input[type='submit']{
 
 
 
-  <script>
-      
+ <script>
 checkEmail = (email) => {
   //https://www.w3resource.com/javascript/form/email-validation.php
   if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
@@ -278,8 +277,15 @@ clearForm = (array) =>{
           DOMElement.value = ''; 
           });
 }
-submitHandling = (e) => {
-      e.preventDefault();
+
+const readStreamRes = async ( streamRes) => {
+	
+	return await Array.fromAsync(streamRes).then(res => new TextDecoder().decode(res[0]) || false).catch(err => console.log(err));
+
+}
+submitHandling = async (e) => {
+      
+	  e.preventDefault();
       //Declaring variables
       const emailContent =  document.getElementById('contactTextArea').value;
 	  const request = 'https://sv04rs5whg.execute-api.us-east-1.amazonaws.com/postmessage';
@@ -329,7 +335,7 @@ submitHandling = (e) => {
       return false;
 }
   document.getElementById('contactForm').addEventListener("submit", submitHandling);
-  </script>
+</script>
 
 </body>
 
